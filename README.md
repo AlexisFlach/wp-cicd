@@ -34,7 +34,7 @@ services:
       - db
     image: wordpress:latest
     ports:
-      - '${PORT}:80'
+      - '8000:80'
     restart: always
     volumes: ['./:/var/www/html']
     environment:
@@ -63,25 +63,8 @@ jobs:
   Build:
     runs-on: self-hosted
     steps:
-      - uses: actions/checkout@main
-      - name: Create .env
-        run: echo 'PORT=${{secrets.PORT }}' > .env 
       - name: Run build
         run: docker-compose up -d
-```
-
-Create a .env file
-
-```
-PORT=1234
-```
-###### github
-
-Secrets -> New repository secret
-
-```pseudocode
-name PORT
-value 80
 ```
 
 ###### Digital Ocean
@@ -136,15 +119,12 @@ repo -> settings -> actions -> runners -> add runner
    ```
 
    ```
-   Job Build completed with result: Failed
-   PermissionError: [Errno 13] Permission denied
+   Job Build compl
+   
    ```
 
-5. ```
-   cd _work/folder/REPOFOLDER/REPOFOLDER
-   cat .env
-   PORT=80
-   ```
+   
+
 
 ###### Give newly created user Docker permission
 
